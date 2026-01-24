@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @JdbcTest
 @ActiveProfiles("test")
-class DatabaseConnectionTest {
+class DatabaseConnectionIT {
 
     @Autowired
     private DataSource dataSource;
