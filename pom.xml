@@ -43,6 +43,11 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -73,7 +78,11 @@
 					<skipTests>${skip.unit.tests}</skipTests>
 					<excludes>
 						<exclude>**/*IT.java</exclude>
+						<exclude>**/*IntegrationTest.java</exclude>
 					</excludes>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
 				</configuration>
 			</plugin>
 			<plugin>
