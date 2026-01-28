@@ -45,7 +45,7 @@ jobs:
       run: mvn -B test -DskipITs
       
     - name: Run integration tests
-      run: mvn -B integration-test
+      run: mvn -B failsafe:integration-test
       env:
         SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/testdb
         SPRING_DATASOURCE_USERNAME: test
