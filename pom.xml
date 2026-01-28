@@ -76,6 +76,61 @@
 		</dependency>
 	</dependencies>
 
+	<profiles>
+		<profile>
+			<id>quiet</id>
+			<properties>
+				<maven.test.skip>false</maven.test.skip>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>3.2.2</version>
+						<configuration>
+							<skipTests>false</skipTests>
+							<trimStackTrace>true</trimStackTrace>
+							<printSummary>false</printSummary>
+							<redirectTestOutputToFile>true</redirectTestOutputToFile>
+							<systemProperties>
+								<property>
+									<name>org.slf4j.simpleLogger.defaultLogLevel</name>
+									<value>off</value>
+								</property>
+								<property>
+									<name>org.slf4j.simpleLogger.log.com.guranxp</name>
+									<value>off</value>
+								</property>
+							</systemProperties>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>3.2.2</version>
+						<configuration>
+							<skipTests>false</skipTests>
+							<trimStackTrace>true</trimStackTrace>
+							<printSummary>false</printSummary>
+							<redirectTestOutputToFile>true</redirectTestOutputToFile>
+							<systemProperties>
+								<property>
+									<name>org.slf4j.simpleLogger.defaultLogLevel</name>
+									<value>off</value>
+								</property>
+								<property>
+									<name>org.slf4j.simpleLogger.log.com.guranxp</name>
+									<value>off</value>
+								</property>
+							</systemProperties>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -94,6 +149,19 @@
 						<include>**/*Test.java</include>
 						<include>**/*Tests.java</include>
 					</includes>
+					<!-- Completely suppress stack traces and verbose output -->
+					<trimStackTrace>true</trimStackTrace>
+					<printSummary>false</printSummary>
+					<redirectTestOutputToFile>true</redirectTestOutputToFile>
+					<useFile>false</useFile>
+					<disableXmlReport>false</disableXmlReport>
+					<systemPropertyVariables>
+						<java.awt.headless>true</java.awt.headless>
+						<org.slf4j.simpleLogger.defaultLogLevel>off</org.slf4j.simpleLogger.defaultLogLevel>
+						<org.slf4j.simpleLogger.log.com.guranxp>off</org.slf4j.simpleLogger.log.com.guranxp>
+						<org.slf4j.simpleLogger.log.org.springframework>off</org.slf4j.simpleLogger.log.org.springframework>
+						<org.slf4j.simpleLogger.log.org.hibernate>off</org.slf4j.simpleLogger.log.org.hibernate>
+					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -104,10 +172,25 @@
 					<skipTests>${skip.it.tests}</skipTests>
 					<includes>
 						<include>**/*IT.java</include>
+						<include>**/*IT*.java</include>
+						<include>**/*IntegrationTest.java</include>
 					</includes>
 					<excludes>
 						<exclude>**/*Test.java</exclude>
 					</excludes>
+					<!-- Completely suppress stack traces and verbose output -->
+					<trimStackTrace>true</trimStackTrace>
+					<printSummary>false</printSummary>
+					<redirectTestOutputToFile>true</redirectTestOutputToFile>
+					<useFile>false</useFile>
+					<disableXmlReport>false</disableXmlReport>
+					<systemPropertyVariables>
+						<java.awt.headless>true</java.awt.headless>
+						<org.slf4j.simpleLogger.defaultLogLevel>off</org.slf4j.simpleLogger.defaultLogLevel>
+						<org.slf4j.simpleLogger.log.com.guranxp>off</org.slf4j.simpleLogger.log.com.guranxp>
+						<org.slf4j.simpleLogger.log.org.springframework>off</org.slf4j.simpleLogger.log.org.springframework>
+						<org.slf4j.simpleLogger.log.org.hibernate>off</org.slf4j.simpleLogger.log.org.hibernate>
+					</systemPropertyVariables>
 				</configuration>
 				<executions>
 					<execution>

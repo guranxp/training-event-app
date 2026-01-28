@@ -32,4 +32,7 @@ public class IdempotencyKey {
    @CreationTimestamp
    @Column(name = "created_at", nullable = false, updatable = false)
    private LocalDateTime createdAt;
+
+   @Column(name = "marked_for_deletion_date")
+   private LocalDateTime markedForDeletionDate;
 }
